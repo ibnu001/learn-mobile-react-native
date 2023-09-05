@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     navBotBar: {
-        flex:0, 
+        flex: 0,
         backgroundColor: 'grey',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
