@@ -19,6 +19,8 @@ import FlashSale from './src/screens/FlashSale';
 import Counter from './src/screens/Counter';
 import ExampleList from './src/component/ExampleList';
 import FlatListExample from './src/component/FlatListExample';
+import SectionListExample from './src/component/SectionListExample';
+import SectionListEx from './src/screens/SectionListEx';
 
 export default function App() {
     return (
@@ -28,7 +30,9 @@ export default function App() {
             {/* <FlashSale/> */}
             {/* <Counter /> */}
             {/* <ExampleList /> */}
-            <FlatListExample />
+            {/* <FlatListExample /> */}
+            {/* <SectionListExample /> */}
+            <SectionListEx />
             <StatusBar style='auto' />
         </View>
 
