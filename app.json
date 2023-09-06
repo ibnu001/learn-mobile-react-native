@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/cover-manga-naruto.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

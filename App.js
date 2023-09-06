@@ -9,42 +9,56 @@ import {
     Button,
     Alert,
     TouchableOpacity,
-    YellowBox
 } from 'react-native';
 import ExampleComponent from './src/component/ExampleComponent';
 import ClassComponent from './src/component/ClassComponent';
 import exampleStyle from "./src/component/ExampleStyle";
+import Greetings from './src/screens/Greetings';
+import Card from './src/component/Card';
+import FlashSale from './src/screens/FlashSale';
+import Counter from './src/screens/Counter';
 
 export default function App() {
     return (
-        <>
-            <View style={styles.header}>
-                <Text style={{
-                    fontWeight: 'bold',
-                    fontSize: 20
-                }}>Belajar Hahh </Text>
-            </View>
+        <View style={styles.container}>
+            {/* <Greetings/> */}
+            {/* <Card/> */}
+            {/* <FlashSale/> */}
+            <Counter />
+            <StatusBar style='auto' />
+        </View>
 
-            <View style={styles.container}>
 
-                <View style={[{ backgroundColor: 'blue' }, styles.box]}></View>
-                <View style={[{ backgroundColor: 'yellow' }, styles.box]}></View>
-                <View style={[{ backgroundColor: 'red' }, styles.box]}></View>
-                <View style={[{ backgroundColor: 'brown' }, styles.box]}></View>
-                <View style={[{ backgroundColor: 'grey' }, styles.box]}></View>
-                <View style={[{ backgroundColor: 'green' }, styles.box]}></View>
-                <View style={[{ backgroundColor: 'blueviolet' }, styles.box]}></View>
-                <View style={[{ backgroundColor: 'red' }, styles.box]}></View>
 
-                <StatusBar style='auto' />
-            </View>
 
-            <View style={styles.navBotBar}>
-                <View style={[{ backgroundColor: 'blue' }, styles.box]}></View>
-                <View style={[{ backgroundColor: 'yellow' }, styles.box]}></View>
-                <View style={[{ backgroundColor: 'red' }, styles.box]}></View>
-            </View>
-        </>
+        // <>
+        //     <View style={styles.header}>
+        //         <Text style={{
+        //             fontWeight: 'bold',
+        //             fontSize: 20
+        //         }}>Belajar Hahh </Text>
+        //     </View>
+
+        //     <View style={styles.container}>
+
+        //         <View style={[{ backgroundColor: 'blue' }, styles.box]}></View>
+        //         <View style={[{ backgroundColor: 'yellow' }, styles.box]}></View>
+        //         <View style={[{ backgroundColor: 'red' }, styles.box]}></View>
+        //         <View style={[{ backgroundColor: 'brown' }, styles.box]}></View>
+        //         <View style={[{ backgroundColor: 'grey' }, styles.box]}></View>
+        //         <View style={[{ backgroundColor: 'green' }, styles.box]}></View>
+        //         <View style={[{ backgroundColor: 'blueviolet' }, styles.box]}></View>
+        //         <View style={[{ backgroundColor: 'red' }, styles.box]}></View>
+
+        //         <StatusBar style='auto' />
+        //     </View>
+
+        //     <View style={styles.navBotBar}>
+        //         <View style={[{ backgroundColor: 'blue' }, styles.box]}></View>
+        //         <View style={[{ backgroundColor: 'yellow' }, styles.box]}></View>
+        //         <View style={[{ backgroundColor: 'red' }, styles.box]}></View>
+        //     </View>
+        // </>
     )
 
 }
@@ -60,13 +74,15 @@ const styles = StyleSheet.create({
     },
     container: {
         padding: 30,
-        flex: 3,
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        alignContent: 'center',
-        maxHeight: 500
+        // backgroundColor:'black',
+        flex: 1
+        // flex: 3,
+        // flexDirection: 'column',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        // flexWrap: 'wrap',
+        // alignContent: 'center',
+        // maxHeight: 500
     },
     box: {
         width: 100,
