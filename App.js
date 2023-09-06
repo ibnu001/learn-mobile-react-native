@@ -17,6 +17,8 @@ import Greetings from './src/screens/Greetings';
 import Card from './src/component/Card';
 import FlashSale from './src/screens/FlashSale';
 import Counter from './src/screens/Counter';
+import ExampleList from './src/component/ExampleList';
+import FlatListExample from './src/component/FlatListExample';
 
 export default function App() {
     return (
@@ -24,7 +26,9 @@ export default function App() {
             {/* <Greetings/> */}
             {/* <Card/> */}
             {/* <FlashSale/> */}
-            <Counter />
+            {/* <Counter /> */}
+            {/* <ExampleList /> */}
+            <FlatListExample />
             <StatusBar style='auto' />
         </View>
 
@@ -73,9 +77,14 @@ const styles = StyleSheet.create({
 
     },
     container: {
-        padding: 30,
+        marginTop: 35,
+        padding: 8,
+        borderWidth: 1,
+        borderColor: 'red',
+        flex: 1,
+        // justifyContent: 'center',
+        // alignItems: 'center'
         // backgroundColor:'black',
-        flex: 1
         // flex: 3,
         // flexDirection: 'column',
         // alignItems: 'center',
