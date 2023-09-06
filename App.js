@@ -21,6 +21,7 @@ import ExampleList from './src/component/ExampleList';
 import FlatListExample from './src/component/FlatListExample';
 import SectionListExample from './src/component/SectionListExample';
 import SectionListEx from './src/screens/SectionListEx';
+import ProductCard from './src/component/ProductCard';
 
 export default function App() {
     return (
@@ -32,7 +33,8 @@ export default function App() {
             {/* <ExampleList /> */}
             {/* <FlatListExample /> */}
             {/* <SectionListExample /> */}
-            <SectionListEx />
+            {/* <SectionListEx /> */}
+            <ProductCard />
             <StatusBar style='auto' />
         </View>
 

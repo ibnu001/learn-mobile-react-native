@@ -1,54 +1,69 @@
 import { SectionList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-// const product = [
-//   {
-//     name: 'Ayam Bakar',
-//     category: 'Makanan',
-//     price: 25000
-//   },
-//   {
-//     name: 'Ayam Goreng',
-//     category: 'Makanan',
-//     price: 100000
-//   },
-//   {
-//     name: 'Teh Manis, maksudnya eneng nya',
-//     category: 'Minuman',
-//     price: 8000000
-//   },
-// ]
-
 const product = [
   {
+    name: 'Ayam Bakar',
     category: 'Makanan',
-    data: [
-      {
-        name: 'Ayam Bakar',
-        price: 25000
-      },
-      {
-        name: 'Ayam Goreng',
-        price: 100000
-      },
-    ]
+    price: 25000
   },
   {
+    name: 'Ayam Goreng',
+    category: 'Makanan',
+    price: 100000
+  },
+  {
+    name: 'Teh Manis, maksudnya eneng nya',
     category: 'Minuman',
-    data: [
-      {
-        name: 'Teh Manis, maksudnya eneng nya',
-        price: 8000000
-      },
-    ]
-  }
+    price: 8000000
+  },
 ]
 
+// const product = [
+//   {
+//     category: 'Makanan',
+//     data: [
+//       {
+//         name: 'Ayam Bakar',
+//         price: 25000
+//       },
+//       {
+//         name: 'Ayam Goreng',
+//         price: 100000
+//       },
+//     ]
+//   },
+//   {
+//     category: 'Minuman',
+//     data: [
+//       {
+//         name: 'Teh Manis, maksudnya eneng nya',
+//         price: 8000000
+//       },
+//     ]
+//   }
+// ]
+
 export default function SectionListEx() {
+
+  const groupedProducts = product.reduce((emptObj, product) => {
+    if(!emptObj[product.category]) {
+      emptObj[product.category] = []
+    } 
+
+    emptObj[product.category].push(product)
+    return emptObj
+  }, {})
+
+  const section = Object.keys(groupedProducts).map((category) => ({
+    title: category,
+    data: groupedProducts[category]
+  }))
+  
   return (
     <View>
       <SectionList
-        sections={product}
+        sections={section}
         renderItem={({ item }) => {
           return (
             <View style={styles.item}>
@@ -57,8 +72,8 @@ export default function SectionListEx() {
             </View>
           )
         }}
-        renderSectionHeader={({ section: { category } }) => (
-          <Text style={styles.sectionHeader}>{category}</Text>
+        renderSectionHeader={({ section }) => (
+          <Text style={styles.sectionHeader}>{section.title}</Text>
         )}
       />
     </View >
