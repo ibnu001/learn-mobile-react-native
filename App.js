@@ -33,8 +33,8 @@ export default function App() {
             {/* <ExampleList /> */}
             {/* <FlatListExample /> */}
             {/* <SectionListExample /> */}
-            {/* <SectionListEx /> */}
-            <ProductCard />
+            <SectionListEx />
+            {/* <ProductCard /> */}
             <StatusBar style='auto' />
         </View>
 

@@ -1,27 +1,40 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function ProductCard() {
+export default function ProductCard({ product }) {
+
+    const formatter = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0,
+    });
+
+    const discount = product.discount * 100
+    const priceAfterDisc = formatter.format(product.price - (product.price * product.discount))
+
+    // const formattedPriceAfterDisc = formatter.format(priceAfterDisc);
+    // const formattedPriceAfterDisc = formatter.format(priceAfterDisc);
+
     return (
         <View style={styles.card}>
             <View>
                 <Image
                     style={styles.image}
                     source={{
-                        uri: 'https://i.pinimg.com/736x/04/64/e8/0464e8529a62de67d237d65194af84a4.jpg'
+                        uri: product.imgUrl
                     }}
                 />
             </View>
 
             <View style={styles.cardContent}>
-                <Text style={styles.productName}>Ayam Bakar</Text>
-                <Text style={styles.price}>Rp. 25.000</Text>
-                <Text style={styles.rate}>Rating  : 8</Text>
-                <Text>Terjual : 20</Text>
+                <Text style={styles.productName}>{product.name}</Text>
+                <Text style={styles.price}>{formatter.format(product.price)}</Text>
+                <Text style={styles.rate}>Rating  : {product.rate}</Text>
+                <Text>Terjual : {product.terjual}</Text>
 
                 <View style={styles.discountSec}>
-                    <Text style={styles.discountText}>Hemat 20000</Text>
-                    <Text style={styles.discountText}>Diskon 20%</Text>
+                    <Text style={styles.discountText}>Hemat : {priceAfterDisc}</Text>
+                    <Text style={styles.discountText}>Diskon : {discount}%</Text>
                 </View>
             </View>
         </View >
@@ -41,8 +54,8 @@ const styles = StyleSheet.create({
     image: {
         // borderWidth: 1,
         // borderColor: 'red',
-        width: 140,
-        height: 210,
+        width: 180,
+        height: 180,
         borderRadius: 8
     },
     cardContent: {
@@ -50,13 +63,12 @@ const styles = StyleSheet.create({
         // borderColor: 'red',
         flex: 1,
         paddingHorizontal: 10,
-        paddingVertical: 20,
-        justifyContent: 'space-between'
+        justifyContent: 'flex-start'
     },
     productName: {
         fontSize: 18,
         fontWeight: 'bold',
-        marginTop: 5,
+        // marginTop: 5,
         marginBottom: 10
     },
     price: {
@@ -77,7 +89,7 @@ const styles = StyleSheet.create({
     },
     discountText: {
         padding: 5,
-        height: 23,
+        // height: 23,
         backgroundColor: '#edcbbe',
         fontSize: 12,
         borderRadius: 8
