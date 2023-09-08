@@ -10,6 +10,7 @@ const todoStyle = StyleSheet.create({
         borderColor: 'black',
         paddingBottom: 16,
         paddingVertical: 8,
+        paddingHorizontal: 16,
 
         // shadow
         shadowOpacity: 0.2,

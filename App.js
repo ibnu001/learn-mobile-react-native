@@ -1,10 +1,14 @@
 import { StyleSheet, View } from 'react-native';
 import TodoScreen from './src/screens/TodoScreen/TodoScreen';
+import SplasScreen from './src/screens/SplasScreen/SplasScreen';
+import AppNavigation from './src/navigation/RootNavigator';
 
 export default function App() {
     return (
         <View style={styles.container} >
-            <TodoScreen />
+            {/* <TodoScreen /> */}
+            {/* <SplasScreen /> */}
+            <AppNavigation />
         </View>
     )
 
@@ -16,10 +20,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         marginTop: 35,
-        padding: 16,
+        // padding: 16,
         // alignItems: 'center',
         // justifyContent: 'center',
-        borderWidth: 1,
-        borderColor: 'red',
+        // borderWidth: 1,
+        // borderColor: 'red',
     },
 });
