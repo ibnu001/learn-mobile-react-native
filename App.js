@@ -22,6 +22,8 @@ import FlatListExample from './src/component/FlatListExample';
 import SectionListExample from './src/component/SectionListExample';
 import SectionListEx from './src/screens/SectionListEx';
 import ProductCard from './src/component/ProductCard';
+import ProductSectionList from './src/screens/ProductSectionList';
+import ProductForm from './src/screens/ProductForm';
 
 export default function App() {
     return (
@@ -33,8 +35,10 @@ export default function App() {
             {/* <ExampleList /> */}
             {/* <FlatListExample /> */}
             {/* <SectionListExample /> */}
-            <SectionListEx />
+            {/* <SectionListEx /> */}
             {/* <ProductCard /> */}
+            <ProductSectionList />
+            {/* <ProductForm /> */}
             <StatusBar style='auto' />
         </View>
 
@@ -83,11 +87,11 @@ const styles = StyleSheet.create({
 
     },
     container: {
+        flex: 1,
         marginTop: 35,
         padding: 8,
-        borderWidth: 1,
-        borderColor: 'red',
-        flex: 1,
+        // borderWidth: 2,
+        // borderColor: 'red',
         // justifyContent: 'center',
         // alignItems: 'center'
         // backgroundColor:'black',
