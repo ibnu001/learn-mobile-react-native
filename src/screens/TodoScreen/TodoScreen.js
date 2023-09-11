@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Text, TextInput, View } from 'react-native'
-import TodoList from './TodoList'
+import TodoList from './components/TodoList'
 import styles from './TodoScreen.style'
 import TabBar from './components/TabBar'
 

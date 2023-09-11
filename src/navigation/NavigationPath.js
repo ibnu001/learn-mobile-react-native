@@ -1,4 +1,5 @@
-export const PATH = {
-    SPLASH : 'Splash',
-    TODO_SCREEN: 'Todo'
+export default PATH = {
+    SPLASH : 'SPLASH',
+    TODO_SCREEN: 'TODO_SCREEN',
+    LOGIN :'LOGIN'
 }

@@ -1,5 +1,4 @@
 import { StyleSheet, View } from 'react-native';
-import TodoScreen from './src/screens/TodoScreen/TodoScreen';
 import SplasScreen from './src/screens/SplasScreen/SplasScreen';
 import AppNavigation from './src/navigation/RootNavigator';
 

@@ -1,12 +1,13 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { PATH } from '../../navigation/NavigationPath';
+
+import PATH from '../../navigation/NavigationPath'
 
 export default function SplasScreen({navigation}) {
 
     React.useEffect(() => {
         setTimeout(() => {
-            navigation.navigate(PATH.TODO_SCREEN)
+            navigation.navigate(PATH.LOGIN)
         }, 1000);
     }, [])
 

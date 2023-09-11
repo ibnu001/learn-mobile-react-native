@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text } from 'react-native'
-import Todo from './components/Todo'
+import Todo from './Todo'
 
 export default function TodoList(props) {
     const { todos, toggleComplete, deleteTodo, type } = props
