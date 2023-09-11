@@ -12,7 +12,9 @@ const styles = StyleSheet.create({
         // borderColor: 'red',
     },
     formSection: {
-        flex: 1,
+        flex: 0.5,
+        flexDirection: 'row',
+        paddingVertical: 8,
         // borderWidth: 1,
         // borderColor: 'green',
     },

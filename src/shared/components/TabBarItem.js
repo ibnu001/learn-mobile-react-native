@@ -1,16 +1,24 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeType } from '../../store/todo/TodoAction'
 
-export default function TabBarItem(props) {
+export default function TabBarItem({ title }) {
 
-    const { title, type, setType, selected } = props
+    // const { title, type, setType, selected } = props
+
+    const dispatch = useDispatch()
+    const type = useSelector((state) => state.TodoReducer.type)
+    const onSetType = () => {
+        dispatch(changeType(title))
+    }
 
     return (
         <TouchableOpacity
-            onPress={setType}
+            onPress={onSetType}
             style={[
                 styles.container,
-                selected ? styles.selected : null
+                type === title ? styles.selected : null
             ]}
         >
             <Text

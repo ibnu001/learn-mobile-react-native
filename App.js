@@ -1,16 +1,18 @@
 import { StyleSheet, View } from 'react-native';
-import SplasScreen from './src/screens/SplasScreen/SplasScreen';
+import { Provider } from 'react-redux';
 import AppNavigation from './src/navigation/RootNavigator';
+import configureStore from './src/store/Store';
+
+const store = configureStore()
 
 export default function App() {
     return (
-        <View style={styles.container} >
-            {/* <TodoScreen /> */}
-            {/* <SplasScreen /> */}
-            <AppNavigation />
-        </View>
+        <Provider store={store}>
+            <View style={styles.container} >
+                <AppNavigation />
+            </View>
+        </Provider>
     )
-
 }
 
 

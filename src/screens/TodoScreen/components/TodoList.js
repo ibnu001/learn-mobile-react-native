@@ -1,11 +1,15 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text } from 'react-native'
+import { useSelector } from 'react-redux'
 import Todo from './Todo'
 
-export default function TodoList(props) {
-    const { todos, toggleComplete, deleteTodo, type } = props
+export default function TodoList() {
+    // const { todos, toggleComplete, deleteTodo, type } = props
 
-    const getVisibleTodos = () => {
+    const todos = useSelector((state) => state.TodoReducer.todos)
+    const todoType = useSelector((state) => state.TodoReducer.type)
+
+    const getVisibleTodos = (todos, type) => {
         switch (type) {
             case 'All':
                 return todos
@@ -16,14 +20,16 @@ export default function TodoList(props) {
         }
     }
 
+    const selectedTodos = getVisibleTodos(todos, todoType)
+
     return (
         <FlatList
-            data={getVisibleTodos()}
+            data={selectedTodos}
             renderItem={({ item }) => (
                 <Todo
                     todo={item}
-                    toggleComplete={toggleComplete}
-                    deleteTodo={deleteTodo}
+                // toggleComplete={toggleComplete}
+                // deleteTodo={deleteTodo}
                 />
             )}
             keyExtractor={(item) => item.id.toString()}
