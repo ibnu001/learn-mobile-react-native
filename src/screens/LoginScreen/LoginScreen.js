@@ -1,19 +1,28 @@
+import React, { useEffect, useState } from "react";
 import {
-  StyleSheet,
+  Alert,
+  Image,
   Text,
   TextInput,
-  View,
-  Image,
-  TouchableOpacity,
-  Alert,
+  View
 } from "react-native";
-import React, { useState } from "react";
-import loginStyles from "./LoginScreen.style";
 import SubmitButton from "../../shared/components/SubmitButton";
+import loginStyles from "./LoginScreen.style";
 
+import { useDispatch, useSelector } from "react-redux";
 import PATH from "../../navigation/NavigationPath";
+import Loading from "../../shared/components/Loading";
+import { showLoading } from "../../store/AppAction";
+import { login } from "../../store/login/LoginAction";
 
 export default function ProductForm({ navigation }) {
+
+  const dispatch = useDispatch()
+  const isLogin = useSelector((state) => state.LoginReducer.isLoggedIn)
+
+  const isLoading = useSelector((state) => state.AppReducer.isLoading)
+  // console.log(isLoading);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,6 +30,15 @@ export default function ProductForm({ navigation }) {
     isValidUsername: "",
     isValidPassword: "",
   });
+
+  // navigation.navigete() -> menjadi tumpukan stack -> able to back page
+  // navigation.replate() -> replace current stack -> unable to back page
+
+  useEffect(() => {
+    if (isLogin) {
+      navigation.replace(PATH.TODO_SCREEN)
+    }
+  })
 
   const validateInputs = () => {
     const errors = {};
@@ -39,8 +57,12 @@ export default function ProductForm({ navigation }) {
     if (Object.keys(errors).length > 0) {
       setInputErrors(errors);
     } else if (username === "enigma" && password === "123") {
+      dispatch(showLoading(true))
+
       setTimeout(() => {
-        navigation.navigate(PATH.TODO_SCREEN);
+        // navigation.navigate(PATH.TODO_SCREEN);
+        dispatch(login(true))
+        dispatch(showLoading(false))
       }, 1000);
     } else {
       Alert.alert("Incorrect", "Invalid Username or Password");
@@ -57,6 +79,8 @@ export default function ProductForm({ navigation }) {
 
   return (
     <View style={loginStyles.container}>
+      {/* {isLoading ? <Loading /> : null} */}
+
       <View style={loginStyles.logoSection}>
         <Image
           style={{
@@ -106,7 +130,7 @@ export default function ProductForm({ navigation }) {
           >
             <SubmitButton
               title={"Login"}
-              additionalSyle={{ backgroundColor: "#233d90" }}
+              additionalSyle={{ backgroundColor: '#233d90' }}
               colorText={{ color: "white" }}
               onSubmit={submitLogin}
             />

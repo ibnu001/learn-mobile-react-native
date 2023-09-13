@@ -12,12 +12,25 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import PATH from "../../../navigation/NavigationPath";
 import styles from "./PopupMenu.style";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../store/login/LoginAction";
+import { showLoading } from "../../../store/AppAction";
 
 const PopupMenu = ({ navigation }) => {
+
+  const dispatch = useDispatch()
+
   const [isModalVisible, setIsModalVisible] = React.useState(false);
 
   const onLogout = () => {
-      navigation.navigate(PATH.LOGIN);
+    // navigation.navigate(PATH.LOGIN);
+    dispatch(showLoading(true))
+
+    setTimeout(() => {
+      dispatch(logout(false))
+      dispatch(showLoading(false))
+      navigation.replace(PATH.LOGIN)
+    }, 1000)
   }
 
   return (

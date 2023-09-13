@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 import React from "react";
+import { StyleSheet, Text, TouchableHighlight } from "react-native";
 
 export default function SubmitButton({ onSubmit, title, additionalSyle, colorText }) {
   return (
@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
   button: {
     // paddingHorizontal : 12,
     borderWidth: 0.5,
-    borderColor : 'black',
+    borderColor: 'black',
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
+    borderRadius: 8,
     paddingVertical: 13,
   },
   text: {

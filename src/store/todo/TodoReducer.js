@@ -14,7 +14,7 @@ const TodoReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TODO:
             return {
-                ...state, // sprint operator --> fungsinya menyalin data
+                ...state, // spread operator --> fungsinya menyalin data
                 newTodoName: '',
                 todos: [...state.todos, action.payload],
             }

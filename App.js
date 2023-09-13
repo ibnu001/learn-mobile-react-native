@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 import AppNavigation from './src/navigation/RootNavigator';
 import configureStore from './src/store/Store';
+import Loading from './src/shared/components/Loading';
 
 const store = configureStore()
 
@@ -10,6 +11,7 @@ export default function App() {
         <Provider store={store}>
             <View style={styles.container} >
                 <AppNavigation />
+                <Loading />
             </View>
         </Provider>
     )

@@ -1,13 +1,13 @@
+import React, { useEffect } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 
 import PATH from '../../navigation/NavigationPath'
 
-export default function SplasScreen({navigation}) {
+export default function SplasScreen({ navigation }) {
 
-    React.useEffect(() => {
+    useEffect(() => {
         setTimeout(() => {
-            navigation.navigate(PATH.LOGIN)
+            navigation.replace(PATH.LOGIN)
         }, 1000);
     }, [])
 
