@@ -7,12 +7,15 @@ import LoginScreen from "../screens/LoginScreen/LoginScreen";
 import TodoScreen from "../screens/TodoScreen/TodoScreen";
 import PopupMenu from "../screens/TodoScreen/components/PopupMenu";
 import { View } from "react-native";
+import { navigationRef } from "./RootNavigation";
+import { Login } from "../screens/LoginScreen/Login";
+import LoginService from "../services/LoginService";
 
 const Stack = createNativeStackNavigator()
 
 const AppNavigation = () => {
     return (
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
 
             <Stack.Navigator initialRouteName={PATH.SPLASH}>
                 <Stack.Screen
@@ -22,9 +25,11 @@ const AppNavigation = () => {
                 />
                 <Stack.Screen
                     name={PATH.LOGIN}
-                    component={LoginScreen}
+                    // component={LoginScreen}
                     options={{ headerShown: false }}
-                />
+                >
+                    {() => <LoginScreen login={() => Login(LoginService)} />}
+                </Stack.Screen>
                 <Stack.Group
                     screenOptions={({ navigation }) => {
                         return {
@@ -49,11 +54,6 @@ const AppNavigation = () => {
                     />
                 </Stack.Group>
             </Stack.Navigator>
-
-            {/* <Stack.Navigator initialRouteName={PATH.SPLASH}>
-                <Stack.Screen name={PATH.SPLASH} component={SplasScreen} options={{ headerShown: false }} />
-                <Stack.Screen name={PATH.TODO_SCREEN} component={TodoScreen} options={{ headerShown: false }} />
-            </Stack.Navigator> */}
         </NavigationContainer>
     )
 }

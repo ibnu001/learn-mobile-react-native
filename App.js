@@ -1,19 +1,25 @@
-import { StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
 import AppNavigation from './src/navigation/RootNavigator';
 import configureStore from './src/store/Store';
 import Loading from './src/shared/components/Loading';
+import DepProvider from './src/context/DependencyContext';
+import apiClient from './src/services/ApiClient';
 
-const store = configureStore()
 
 export default function App() {
+
+    const store = configureStore()
+
     return (
-        <Provider store={store}>
-            <View style={styles.container} >
-                <AppNavigation />
-                <Loading />
-            </View>
-        </Provider>
+        <SafeAreaView style={styles.container}>
+            <Provider store={store}>
+                <DepProvider services={{ apiClient: apiClient }}>
+                    <AppNavigation />
+                    <Loading />
+                </DepProvider>
+            </Provider>
+        </SafeAreaView>
     )
 }
 

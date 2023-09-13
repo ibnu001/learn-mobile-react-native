@@ -14,36 +14,40 @@ import PATH from "../../navigation/NavigationPath";
 import Loading from "../../shared/components/Loading";
 import { showLoading } from "../../store/AppAction";
 import { login } from "../../store/login/LoginAction";
+import MessageBox from "../../shared/components/MessageBox";
 
-export default function ProductForm({ navigation }) {
+export default function ProductForm({ login }) {
 
-  const dispatch = useDispatch()
-  const isLogin = useSelector((state) => state.LoginReducer.isLoggedIn)
+  const { onAuthenticate, onDismissError } = login()
+  const error = useSelector((state) => state.AppReducer.errorMessage)
 
-  const isLoading = useSelector((state) => state.AppReducer.isLoading)
+  // const dispatch = useDispatch()
+  // const isLogin = useSelector((state) => state.LoginReducer.isLoggedIn)
+
+  // const isLoading = useSelector((state) => state.AppReducer.isLoading)
   // console.log(isLoading);
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [inputErrors, setInputErrors] = useState({
-    isValidUsername: "",
+    isValidEmail: "",
     isValidPassword: "",
   });
 
   // navigation.navigete() -> menjadi tumpukan stack -> able to back page
   // navigation.replate() -> replace current stack -> unable to back page
 
-  useEffect(() => {
-    if (isLogin) {
-      navigation.replace(PATH.TODO_SCREEN)
-    }
-  })
+  // useEffect(() => {
+  //   if (isLogin) {
+  //     navigation.replace(PATH.TODO_SCREEN)
+  //   }
+  // })
 
   const validateInputs = () => {
     const errors = {};
-    if (username.trim() === "") {
-      errors.isValidUsername = "Username or email is required";
+    if (email.trim() === "") {
+      errors.isValidEmail = "Email is required";
     }
     if (password.trim() === "") {
       errors.isValidPassword = "Password is required";
@@ -51,22 +55,37 @@ export default function ProductForm({ navigation }) {
     return errors;
   };
 
+  useEffect(() => {
+    if (error) {
+      MessageBox('Error', error.message, onDismissError).showAlert()
+    }
+  }, [error])
+
   const submitLogin = () => {
     const errors = validateInputs();
 
     if (Object.keys(errors).length > 0) {
       setInputErrors(errors);
-    } else if (username === "enigma" && password === "123") {
-      dispatch(showLoading(true))
-
-      setTimeout(() => {
-        // navigation.navigate(PATH.TODO_SCREEN);
-        dispatch(login(true))
-        dispatch(showLoading(false))
-      }, 1000);
     } else {
-      Alert.alert("Incorrect", "Invalid Username or Password");
+      // console.log('=== LoginScreen Email, Password: ', email, password);
+
+      // console.log('=== LoginScreen Email: ', email);
+      // console.log('=== LoginScreen Password: ', password);
+      onAuthenticate(email, password)
     }
+    // if (Object.keys(errors).length > 0) {
+    //   setInputErrors(errors);
+    // } else if (email === "enigma" && password === "123") {
+    //   dispatch(showLoading(true))
+
+    //   setTimeout(() => {
+    //     // navigation.navigate(PATH.TODO_SCREEN);
+    //     dispatch(login(true))
+    //     dispatch(showLoading(false))
+    //   }, 1000);
+    // } else {
+    //   Alert.alert("Incorrect", "Invalid Email or Password");
+    // }
   };
 
   const isErrorView = (errorValidation) => {
@@ -96,19 +115,22 @@ export default function ProductForm({ navigation }) {
             <Text style={loginStyles.title}>Hello!,</Text>
             <Text style={loginStyles.title}>Well Come Back Enigmanians</Text>
           </View>
+
           <Text style={loginStyles.label}>Email</Text>
           <TextInput
             onChangeText={(val) => {
-              setUsername(val);
+              setEmail(val);
               setInputErrors({
                 ...inputErrors,
-                isValidUsername: "",
+                isValidEmail: "",
               });
             }}
-            placeholder="Username or Email"
+            placeholder="Email"
+            keyboardType="email-address"
             style={loginStyles.input}
           />
-          {isErrorView(inputErrors.isValidUsername)}
+          {isErrorView(inputErrors.isValidEmail)}
+
           <Text style={loginStyles.label}>Password</Text>
           <TextInput
             onChangeText={(val) => {
@@ -121,8 +143,10 @@ export default function ProductForm({ navigation }) {
             style={loginStyles.input}
             secureTextEntry={true}
             placeholder="password"
+          // keyboardType="ascii-capable"
           />
           {isErrorView(inputErrors.isValidPassword)}
+
           <View
             style={{
               marginVertical: 6,

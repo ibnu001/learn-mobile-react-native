@@ -6,6 +6,7 @@ const CHANGE_TYPE = 'CHANGE_TYPE'
 const SET_TODO_NAME = 'SET_TODO_NAME'
 const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
+const SHOW_ERROR = 'SHOW_ERROR'
 
 export {
     SHOW_LOADING,
@@ -15,5 +16,6 @@ export {
     CHANGE_TYPE,
     SET_TODO_NAME,
     LOGIN,
-    LOGOUT
+    LOGOUT,
+    SHOW_ERROR
 }

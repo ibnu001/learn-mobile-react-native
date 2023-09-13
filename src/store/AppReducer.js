@@ -1,7 +1,8 @@
-import { SHOW_LOADING } from '../utils/Constant'
+import { SHOW_ERROR, SHOW_LOADING } from '../utils/Constant'
 
 const initialState = {
     isLoading: false,
+    errorMessage: '',
     theme: 'dark',
     language: 'en'
 }
@@ -13,6 +14,13 @@ const AppReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: action.payload
             }
+            
+        case SHOW_ERROR:
+            return {
+                ...state,
+                errorMessage: action.payload
+            }
+
         default:
             return state
     }

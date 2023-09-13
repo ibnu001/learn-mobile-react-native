@@ -1,4 +1,4 @@
-import { SHOW_LOADING } from "../utils/Constant"
+import { SHOW_ERROR, SHOW_LOADING } from "../utils/Constant"
 
 const showLoading = (isLoading) => {
     return {
@@ -7,6 +7,14 @@ const showLoading = (isLoading) => {
     }
 }
 
+const showError = (errorMessage) => {
+    return {
+        type: SHOW_ERROR,
+        payload: errorMessage
+    }
+}
+
 export {
-    showLoading
+    showLoading,
+    showError
 }
