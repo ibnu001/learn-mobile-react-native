@@ -22,10 +22,10 @@ export default function Todo({ todo }) {
             <Text
                 style={[
                     todoStyle.text,
-                    todo.complete ? todoStyle.todoComplete : null
+                    todo.isCompleted ? todoStyle.todoComplete : null
                 ]}
             >
-                {todo.title}
+                {todo.name}
             </Text>
 
             <View style={todoStyle.buttonWrapper}>

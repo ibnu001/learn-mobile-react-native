@@ -10,7 +10,9 @@ const LocalStorage = () => {
     const getData = async (key) => {
         try {
             const value = await AsyncStorage.getItem(key)
-            return value
+            if (value != null) {
+                return value
+            }
         } catch (e) {
             console.error('Error while getting data:', e);
             throw e

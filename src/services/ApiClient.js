@@ -7,8 +7,9 @@ const client = axios.create({
 })
 
 client.interceptors.request.use(async (config) => {
-    if (config.url === '/users/login') {
+    if (config.url != '/users/login') {
         const token = await LocalStorage().getData("token")
+        // console.log('header=======',token);
         config.headers = {
             'Authorization': `Bearer ${token}`
         }
@@ -19,6 +20,7 @@ client.interceptors.request.use(async (config) => {
 const apiClient = async ({ url, method, params = null }) => {
     try {
         const result = await client[method](url, params)
+    //    console.log(result);
         return result
     } catch (e) {
         if (e.response.status === 401) {

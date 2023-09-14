@@ -10,6 +10,8 @@ import { View } from "react-native";
 import { navigationRef } from "./RootNavigation";
 import { Login } from "../screens/LoginScreen/Login";
 import LoginService from "../services/LoginService";
+import TodoService from '../services/TodoService'
+import { ToDo } from "../screens/TodoScreen/ToDo";
 
 const Stack = createNativeStackNavigator()
 
@@ -49,9 +51,11 @@ const AppNavigation = () => {
                 >
                     <Stack.Screen
                         name={PATH.TODO_SCREEN}
-                        component={TodoScreen}
+                        // component={TodoScreen}
                         options={{ title: "Todos" }}
-                    />
+                    >
+                        {() => <TodoScreen todo={() => ToDo(TodoService)} />}
+                    </Stack.Screen>
                 </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

@@ -7,6 +7,7 @@ const SET_TODO_NAME = 'SET_TODO_NAME'
 const LOGIN = 'LOGIN'
 const LOGOUT = 'LOGOUT'
 const SHOW_ERROR = 'SHOW_ERROR'
+const SET_TODOS = 'SET_TODOS'
 
 export {
     SHOW_LOADING,
@@ -17,5 +18,6 @@ export {
     SET_TODO_NAME,
     LOGIN,
     LOGOUT,
-    SHOW_ERROR
+    SHOW_ERROR,
+    SET_TODOS,
 }

@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux'
 import Todo from './Todo'
 
 export default function TodoList() {
-    // const { todos, toggleComplete, deleteTodo, type } = props
 
     const todos = useSelector((state) => state.TodoReducer.todos)
     const todoType = useSelector((state) => state.TodoReducer.type)
@@ -14,9 +13,9 @@ export default function TodoList() {
             case 'All':
                 return todos
             case 'Complete':
-                return todos.filter((todo) => todo.complete)
+                return todos.filter((todo) => todo.isCompleted)
             case 'Active':
-                return todos.filter((todo) => !todo.complete)
+                return todos.filter((todo) => !todo.isCompleted)
         }
     }
 
@@ -26,11 +25,7 @@ export default function TodoList() {
         <FlatList
             data={selectedTodos}
             renderItem={({ item }) => (
-                <Todo
-                    todo={item}
-                // toggleComplete={toggleComplete}
-                // deleteTodo={deleteTodo}
-                />
+                <Todo todo={item} />
             )}
             keyExtractor={(item) => item.id.toString()}
             ListEmptyComponent={() => <Text>Data Kosong</Text>}

@@ -14,10 +14,10 @@ export const Login = (service) => {
             await login(email, password)
             dispatch(loginAction())
 
-            // onNavigate({
-            //     routeName: PATH.TODO_SCREEN,
-            //     isReplace: true
-            // })
+            onNavigate({
+                routeName: PATH.TODO_SCREEN,
+                isReplace: true
+            })
             
         } catch (e) {
             dispatch(showError(e))

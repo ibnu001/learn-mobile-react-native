@@ -1,20 +1,18 @@
+import { MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import React from "react";
 import {
   Modal,
-  Text,
-  View,
-  TouchableHighlight,
   Pressable,
-  TouchableWithoutFeedback,
+  Text,
+  TouchableHighlight,
+  View
 } from "react-native";
-import { SimpleLineIcons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import PATH from "../../../navigation/NavigationPath";
-import styles from "./PopupMenu.style";
 import { useDispatch } from "react-redux";
-import { logout } from "../../../store/login/LoginAction";
+import PATH from "../../../navigation/NavigationPath";
 import { showLoading } from "../../../store/AppAction";
+import { logoutAction } from "../../../store/login/LoginAction";
+import styles from "./PopupMenu.style";
 
 const PopupMenu = ({ navigation }) => {
 
@@ -27,7 +25,7 @@ const PopupMenu = ({ navigation }) => {
     dispatch(showLoading(true))
 
     setTimeout(() => {
-      dispatch(logout(false))
+      dispatch(logoutAction())
       dispatch(showLoading(false))
       navigation.replace(PATH.LOGIN)
     }, 1000)

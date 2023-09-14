@@ -1,12 +1,8 @@
-import { ADD_TODO, CHANGE_TYPE, DELETE_TODO, SET_TODO_NAME, TOGGLE_COMPLETE } from "../../utils/Constant"
+import { ADD_TODO, CHANGE_TYPE, DELETE_TODO, SET_TODOS, SET_TODO_NAME, TOGGLE_COMPLETE } from "../../utils/Constant"
 
 const initialState = {
     newTodoName: '',
-    todos: [
-        { id: 1, title: 'Olahraga', complete: true },
-        { id: 2, title: 'Ngobar', complete: false },
-        { id: 3, title: 'Ngompor', complete: true },
-    ],
+    todos: [],
     type: 'All'
 }
 
@@ -44,6 +40,11 @@ const TodoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todos: todos
+            }
+        case SET_TODOS:
+            return {
+                ...state,
+                todos: action.payload
             }
         default:
             return state
