@@ -67,10 +67,7 @@ export default function ProductForm({ login }) {
     if (Object.keys(errors).length > 0) {
       setInputErrors(errors);
     } else {
-      // console.log('=== LoginScreen Email, Password: ', email, password);
-
-      // console.log('=== LoginScreen Email: ', email);
-      // console.log('=== LoginScreen Password: ', password);
+      // console.log(`email : ${email}, pw: ${password}`);
       onAuthenticate(email, password)
     }
     // if (Object.keys(errors).length > 0) {

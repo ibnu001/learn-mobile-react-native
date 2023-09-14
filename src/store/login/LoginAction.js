@@ -1,20 +1,15 @@
 import { LOGIN, LOGOUT } from "../../utils/Constant";
 
-function login(isLogin) {
+function loginAction() {
     return {
         type: LOGIN,
-        payload: isLogin
     }
 }
 
-function logout(isLogout) {
+function logoutAction() {
     return {
         type: LOGOUT,
-        payload: isLogout
     }
 }
 
-export {
-    login,
-    logout,
-}
+export { loginAction, logoutAction, }

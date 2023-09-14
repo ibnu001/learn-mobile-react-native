@@ -7,24 +7,17 @@ const LoginService = () => {
 
     const login = async (email, password) => {
         try {
-            // console.log('=== LoginService Email, Password: ', email, password);
-            const data = await apiClient({
-                method: 'post',
-                url: '/auth/login',
+            const result = await apiClient({
+                method: "post",
+                url: "/users/login",
                 params: {
                     email: email,
                     password: password
                 },
-                // headers: {
-                //     'Content-Type': 'application/json'
-                // }
             })
+            // console.log('token', result.data.data.token);
 
-            // console.log('LoginService');
-
-            // console.log('===Login Service Data: ', data);
-
-            await LocalStorage().setData('token', data)
+            await LocalStorage().setData('token', result.data.data.token)
         } catch (e) {
             throw e
         }
