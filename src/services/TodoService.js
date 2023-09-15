@@ -14,9 +14,49 @@ const TodoService = () => {
         }
     }
 
- 
+    const addTodoService = async (newTodoName) => {
+        try {
+            return await apiClient({
+                url: "/todos",
+                method: "post",
+                params: {
+                    name: newTodoName
+                }
+            })
+        } catch (error) {
+            throw error
+        }
+    }
+
+    const deleteTodoService = async (id) => {
+        try {
+            return await apiClient({
+                url: `/todos/${id}`,
+                method: "delete",
+            })
+        } catch (error) {
+            throw error
+        }
+    }
+
+    const updateTodoService = async (payload) => {
+        try {
+            return await apiClient({
+                url: '/todos',
+                method: "put",
+                params: payload
+            })
+        } catch (error) {
+            throw error
+        }
+    }
+
+
     return {
-        getTodoService
+        getTodoService,
+        addTodoService,
+        deleteTodoService,
+        updateTodoService
     }
 }
 

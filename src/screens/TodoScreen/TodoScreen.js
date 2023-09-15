@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { addTodo, setTodos } from '../../store/todo/TodoAction'
@@ -7,12 +7,16 @@ import TabBar from './components/TabBar'
 import TodoList from './components/TodoList'
 
 export default function TodoScreen({ todo }) {
-    const { onLoadTodo } = todo()
+    const { onLoadTodo, onSubmitTodo, onDeleteTodo, onUpdateTodo } = todo()
     const dispatch = useDispatch()
+    const [newTodoName, setNewTodoName] = useState("")
+
+    const onSetTodoName = (val) => {
+        setNewTodoName(val)
+    }
 
     const loadDataTodo = async () => {
         const todos = await onLoadTodo()
-        // console.log(todos.data.data);
         dispatch(setTodos(todos.data.data))
     }
 
@@ -36,19 +40,34 @@ export default function TodoScreen({ todo }) {
     //     dispatch(setTodoName(val))
     // }
 
-    const submitTodo = () => {
-        const trimInput = todoName.trim()
+    const submitTodo = async () => {
+        const trimInput = newTodoName.trim()
 
-        if (trimInput === "" || todoName.length < 4) {
+        if (trimInput === "" || newTodoName.length < 4) {
             Alert.alert('Invalid Input', 'Please Correct input')
         } else {
-            const payload = {
-                title: todoName,
-                complete: false,
-                id: currentId + 1,
-            }
-            dispatch(addTodo(payload))
+            await onSubmitTodo(newTodoName)
+            loadDataTodo()
+            setNewTodoName('')
+            // const payload = {
+            //     title: todoName,
+            //     complete: false,
+            //     id: currentId + 1,
+            // }
+            // dispatch(addTodo(payload))
         }
+    }
+
+    const deleteTodo = async (id) => {
+        await onDeleteTodo(id)
+
+        loadDataTodo()
+    }
+
+    const updateTodo = async (payload) => {
+        await onUpdateTodo(payload)
+
+        loadDataTodo()
     }
 
     return (
@@ -63,8 +82,8 @@ export default function TodoScreen({ todo }) {
             <View style={styles.formSection}>
                 <TextInput
                     placeholder='New Todo'
-                    // value={todoName}
-                    // onChangeText={onSetTodoName}
+                    value={newTodoName}
+                    onChangeText={onSetTodoName}
                     style={{
                         flex: 2,
                         padding: 10,
@@ -90,7 +109,7 @@ export default function TodoScreen({ todo }) {
 
             {/* List */}
             <View style={styles.listSection}>
-                <TodoList />
+                <TodoList deleteTodo={deleteTodo} updateTodo={updateTodo}/>
             </View>
 
             {/* TabBar */}

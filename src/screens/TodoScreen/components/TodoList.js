@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Text } from 'react-native'
 import { useSelector } from 'react-redux'
 import Todo from './Todo'
 
-export default function TodoList() {
+export default function TodoList({deleteTodo, updateTodo}) {
 
     const todos = useSelector((state) => state.TodoReducer.todos)
     const todoType = useSelector((state) => state.TodoReducer.type)
@@ -25,7 +25,7 @@ export default function TodoList() {
         <FlatList
             data={selectedTodos}
             renderItem={({ item }) => (
-                <Todo todo={item} />
+                <Todo todo={item} deleteTodoProps={deleteTodo} updateTodoProps={updateTodo}/>
             )}
             keyExtractor={(item) => item.id.toString()}
             ListEmptyComponent={() => <Text>Data Kosong</Text>}

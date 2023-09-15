@@ -5,16 +5,33 @@ import TodoButton from '../../../shared/components/TodoButton'
 import { deleteTodo, toggleComplete } from '../../../store/todo/TodoAction'
 import todoStyle from './Todo.style'
 
-export default function Todo({ todo }) {
+export default function Todo({ todo, deleteTodoProps, updateTodoProps }) {
 
     const dispatch = useDispatch()
 
-    const onTodoComplete = (id) => {
-        dispatch(toggleComplete(id))
-    }
+    // const onTodoComplete = (id) => {
+    //     dispatch(toggleComplete(id))
+    // }
 
     const onDeleteTodo = (id) => {
         dispatch(deleteTodo(id))
+    }
+
+    const payload = {
+        id: todo.id,
+        name: todo.name,
+        isCompleted: true
+    }
+
+    // atau
+
+    const onTodoComplete = (currentTodo) => {
+        const todoUpdate = {
+            id: currentTodo.id,
+            name: currentTodo.name,
+            isCompleted: true
+        }
+        updateTodoProps(todoUpdate)
     }
 
     return (
@@ -32,13 +49,14 @@ export default function Todo({ todo }) {
 
                 <TodoButton
                     nameIcon={'checkmark-done-circle-outline'}
-                    onPress={() => onTodoComplete(todo.id)}
+                    // onPress={() => updateTodoProps(payload)}
+                    onPress={() => onTodoComplete(todo)}
                     colorIcon={'green'}
                 />
 
                 <TodoButton
                     nameIcon={'close-circle-outline'}
-                    onPress={() => onDeleteTodo(todo.id)}
+                    onPress={() => deleteTodoProps(todo.id)}
                     colorIcon={'red'}
                 />
 

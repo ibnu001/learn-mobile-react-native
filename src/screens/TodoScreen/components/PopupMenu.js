@@ -13,8 +13,9 @@ import PATH from "../../../navigation/NavigationPath";
 import { showLoading } from "../../../store/AppAction";
 import { logoutAction } from "../../../store/login/LoginAction";
 import styles from "./PopupMenu.style";
+import { onNavigate } from '../../../navigation/RootNavigation'
 
-const PopupMenu = ({ navigation }) => {
+const PopupMenu = () => {
 
   const dispatch = useDispatch()
 
@@ -26,8 +27,12 @@ const PopupMenu = ({ navigation }) => {
 
     setTimeout(() => {
       dispatch(logoutAction())
+      // navigation.replace(PATH.LOGIN)
+      onNavigate({
+        routeName: PATH.LOGIN,
+        isReplace: true
+      })
       dispatch(showLoading(false))
-      navigation.replace(PATH.LOGIN)
     }, 1000)
   }
 
