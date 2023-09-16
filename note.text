@@ -1,0 +1,26 @@
+Jest :
+
+1. Pengujian Otomatis : menjalankan semua test yang ada dalam project react
+2. mocking : pemalsuan object atau function yang dibutuhkan dari fungsi yang kita test
+3. code coverage : 
+coverage unit testing :
+func a() {
+    if (a) {
+        return a 30%
+    } else if (b) {
+        return b 30%
+    } else {
+        return c 30%
+    }
+}
+
+func hello () {
+    try {
+        if (a) {
+            return a 50%
+        } 
+    } catch (e) {
+        throw e 50%
+    }
+}
+
